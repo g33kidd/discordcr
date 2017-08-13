@@ -242,8 +242,9 @@ module Discord
     # *afk* can be used in conjunction to signify to Discord that the status
     # change is due to inactivity on the bot's part – this fulfills no cosmetic
     # purpose.
-    def status_update(status : String? = nil, game : GamePlaying? = nil, afk : Bool = false, since : Int64 = 0_i64)
+    def status_update(status : String? = nil, game : GamePlaying? = nil, afk : Bool = false, since : Int64? = nil)
       packet = Gateway::StatusUpdatePacket.new(status, game, afk, since)
+      puts packet.to_json
       @websocket.send(packet.to_json)
     end
 
